@@ -43,9 +43,9 @@ func CreateTable(createScript string) bool {
 	return true
 }
 
-func ExecuteSelectQuery(query string) *sql.Rows {
+func ExecuteSelectQuery(query string, args ...interface{}) *sql.Rows {
 	connection := manager.DatabaseManager.GetConnection()
-	rows, err := connection.Query(query)
+	rows, err := connection.Query(query, args)
 
 	if err != nil {
 		log.Fatalf(err.Error())
